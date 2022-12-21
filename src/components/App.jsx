@@ -31,9 +31,17 @@ export class App extends Component {
       number,
     };
 
-    this.setState(prevState => ({
-      contacts: [newContact, ...prevState.contacts],
-    }));
+    if (
+      this.state.contacts.find(
+        findContact => findContact.name === newContact.name
+      )
+    ) {
+      alert(`${newContact.name} is already in contacts`);
+    } else {
+      this.setState(prevState => ({
+        contacts: [newContact, ...prevState.contacts],
+      }));
+    }
   };
 
   changeFilter = e => {
@@ -43,13 +51,23 @@ export class App extends Component {
   render() {
     const { contacts, filter } = this.state;
 
+    const normalizeFilter = filter.toLowerCase();
+    const filteredContacts = contacts.filter(contact => {
+      return (
+        contact.name.toLowerCase().includes(normalizeFilter) ||
+        contact.number.toLowerCase().includes(normalizeFilter)
+      );
+    });
     return (
       <div>
         <CreateContact onSubmit={this.addContact} />
 
         <h2>Contacts</h2>
         <Filter value={filter} onChangeFilter={this.changeFilter} />
-        <ContactList contacts={contacts} onDeleteContact={this.deleteContact} />
+        <ContactList
+          contacts={filteredContacts}
+          onDeleteContact={this.deleteContact}
+        />
 
         <GlobalStyle />
       </div>
