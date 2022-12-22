@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class CreateContact extends Component {
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired,
+  };
+
   state = {
     name: '',
     number: '',
@@ -55,11 +61,5 @@ class CreateContact extends Component {
     );
   }
 }
-
-// const CreateContact = () => {
-//   return (
-
-//   );
-// };
 
 export default CreateContact;
