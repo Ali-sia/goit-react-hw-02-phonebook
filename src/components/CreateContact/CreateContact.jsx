@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Box } from '../Box';
+import { EnterLabel, EnterInput, StyledButton } from '../App.styled';
 
 class CreateContact extends Component {
   static propTypes = {
@@ -32,10 +34,16 @@ class CreateContact extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="flex-start"
+        as="form"
+        onSubmit={this.handleSubmit}
+      >
+        <EnterLabel>
           Name:
-          <input
+          <EnterInput
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -43,11 +51,11 @@ class CreateContact extends Component {
             required
             onChange={this.handleChange}
           />
-        </label>
+        </EnterLabel>
 
-        <label>
+        <EnterLabel>
           Number:
-          <input
+          <EnterInput
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -55,9 +63,9 @@ class CreateContact extends Component {
             required
             onChange={this.handleChange}
           />
-        </label>
-        <button type="submit">Add contact</button>
-      </form>
+        </EnterLabel>
+        <StyledButton type="submit">Add contact</StyledButton>
+      </Box>
     );
   }
 }

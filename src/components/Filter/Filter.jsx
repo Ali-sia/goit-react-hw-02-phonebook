@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
+import { EnterLabel, EnterInput } from '../App.styled';
 
 const Filter = ({ filtrValue, onChangeFilter }) => {
   return (
     <>
-      <label>
-        Filter:{' '}
-        <input type="text" value={filtrValue} onChange={onChangeFilter} />
-      </label>
+      <EnterLabel>
+        Filter:
+        <EnterInput type="text" value={filtrValue} onChange={onChangeFilter} />
+      </EnterLabel>
     </>
   );
 };

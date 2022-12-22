@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 
 import { GlobalStyle } from './GlobalStyle';
+import { Box } from './Box';
+import { Title } from './App.styled';
 
 import ContactList from './ContactList';
 import Filter from './Filter';
@@ -70,10 +73,11 @@ export class App extends Component {
       );
     });
     return (
-      <div>
+      <Box pr={4} pl={4} color="text" width="400px">
+        <Title>Add contact</Title>
         <CreateContact onSubmit={this.addContact} />
 
-        <h2>Contacts</h2>
+        <Title>Contacts</Title>
         <Filter value={filter} onChangeFilter={this.changeFilter} />
         <ContactList
           contacts={filteredContacts}
@@ -81,7 +85,7 @@ export class App extends Component {
         />
 
         <GlobalStyle />
-      </div>
+      </Box>
     );
   }
 }
